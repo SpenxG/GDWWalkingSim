@@ -7,6 +7,10 @@ public class PlayerController : MonoBehaviour {
 
     Vector3 forward, right;
     private float moveSpeed;
+    public Transform movePoint;
+
+    public LayerMask whatStopMovement;
+    
 
 	// Use this for initialization
 	void Start () {
@@ -20,7 +24,9 @@ public class PlayerController : MonoBehaviour {
 
         // Initial speed
         moveSpeed = walkSpeed;
-	    
+    
+        movePoint.parent = null;
+
 	}
 	
 	// Update is called once per frame
@@ -31,6 +37,20 @@ public class PlayerController : MonoBehaviour {
             Move();
         }
 
+/*
+        transform.position = Vector3.MoveTowards(transform.position, movePoint.position, walkSpeed * Time.deltaTime);
+
+        if (Vector3.Distance(transform.position, movePoint.position) <= 0.05f){
+            if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1f){
+                if (!Physics2D.OverlapBox(movePoint.position + new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f), 0.2f, whatStopMovement))
+                movePoint.position += new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f);
+            }
+
+            if (Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f){
+                movePoint.position += new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f);
+            }       
+        }
+*/
 	}
 
     void Move() {
@@ -40,7 +60,7 @@ public class PlayerController : MonoBehaviour {
         Vector3 upMovement = forward * moveSpeed * Input.GetAxis("Vertical");
 
         // Calculate what is forward
-        Vector3 heading = Vector3.Normalize(rightMovement + upMovement);
+        //Vector3 heading = Vector3.Normalize(rightMovement + upMovement);
 
         // Set new position
         Vector3 newPosition = transform.position;
@@ -48,8 +68,11 @@ public class PlayerController : MonoBehaviour {
         newPosition += upMovement;
 
         // Smoothly move the new position
-        transform.forward = heading;
+        //transform.forward = heading;
         transform.position = Vector3.Lerp(transform.position, newPosition, Time.deltaTime);
+
+
+
 
     }
 }
