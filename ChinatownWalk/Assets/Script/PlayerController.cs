@@ -8,7 +8,8 @@ public class PlayerController : MonoBehaviour {
     Vector3 forward, right;
     private float moveSpeed;
     public Transform movePoint;
-
+    public AudioSource music;
+    public AudioSource footsteps;
     public LayerMask whatStopMovement;
     
 
@@ -26,7 +27,7 @@ public class PlayerController : MonoBehaviour {
         moveSpeed = walkSpeed;
     
         movePoint.parent = null;
-
+        footsteps = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -35,8 +36,11 @@ public class PlayerController : MonoBehaviour {
         // Movement
         if (Input.anyKey) {
             Move();
+            footsteps.enabled = true;
         }
-
+        else{
+            footsteps.enabled = false;
+        }
 /*
         transform.position = Vector3.MoveTowards(transform.position, movePoint.position, walkSpeed * Time.deltaTime);
 
