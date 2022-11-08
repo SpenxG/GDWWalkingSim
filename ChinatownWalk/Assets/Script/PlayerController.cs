@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour {
     public Transform movePoint;
     public AudioSource music;
     public AudioSource footsteps;
-    public LayerMask whatStopMovement;
+    //public LayerMask whatStopMovement;
     
 
 	// Use this for initialization
