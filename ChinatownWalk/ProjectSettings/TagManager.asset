@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Cityline
+  - Bed
+  - PlayerHouse
+  - TeaShop
+  - PlayerDoor
+  - TeaShopDoor
   layers:
   - Default
   - TransparentFX
